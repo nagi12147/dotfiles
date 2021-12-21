@@ -4,9 +4,18 @@
 
 [[ $- != *i* ]] && return
 
-#PS1=" \[$(tput bold)\]\[\e[31m\]\w\[$(tput sgr0)\] # "	#root bashrc
+#PS1=" \[$(tput bold)\]\[$(tput setaf 1)\]\w\[$(tput sgr0)\] # "	#root bashrc
 PS1=" \[$(tput bold)\]\[$(tput setaf 5)\]\w\[$(tput sgr0)\] $ "
 set -o vi
+
+stty -ixon	# Disable ctrl-s and ctrl-q.
+shopt -s autocd	# Allows you to cd into directory merely by typing the directory name.
+command -v nvim >/dev/null && alias vimdiff="nvim -d" # Use neovim for vimdiff if present.
+bind "set completion-ignore-case on"
+
+# Infinite history.
+HISTSIZE=
+HISTFILESIZE=
 
 # Color
 alias diff="diff --color=auto"
@@ -25,10 +34,9 @@ alias c="connmanctl"
 alias g="git"
 alias reboot="loginctl reboot"
 alias poweroff="loginctl poweroff"
-alias merge="xrdb -merge ~/.Xresources"
+alias merge="xrdb ~/.Xresources"
 
-bind "set completion-ignore-case on"
-
+# LF Icons
 export LF_ICONS="\
 tw=:\
 st=:\
