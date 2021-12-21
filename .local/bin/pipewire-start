@@ -1,0 +1,5 @@
+#!/bin/sh
+
+killall pipewire; /usr/bin/pipewire &
+killall pipewire-pulse; /usr/bin/pipewire-pulse &
+killall pipewire-media-session; /usr/bin/pipewire-media-session &
