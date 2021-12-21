@@ -1,6 +1,6 @@
-## nagi12147's dotfiles
+# nagi12147's dotfiles
 My minimal configuration files
 
-# Credits
+## Credits
 * [Luke Smith](https://lukesmith.xyz)
 * [Tatsumoto](https://tatsumoto-ren.github.io)
