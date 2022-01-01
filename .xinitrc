@@ -5,12 +5,12 @@ if which dbus-launch >/dev/null && test -z "$DBUS_SESSION_BUS_ADDRESS"; then
 fi
 
 # Autolaunch
+xrandr --dpi 115 &
+xbacklight -set 30 &
 setbg &
-sh ~/.local/bin/pipewire-start
+sh ~/.local/bin/pipewire-start &
 xrdb ~/.Xresources &
 slstatus &
-xrandr --dpi 98 &
-xsettingsd &
 fcitx &
 dunst &
 unclutter -idle 3 &

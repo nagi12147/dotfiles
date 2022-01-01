@@ -6,7 +6,7 @@
 #	If given a directory, choose random file in it.
 #	If wal is installed, also generates a colorscheme.
 
-readonly linkpath="${XDG_DATA_HOME:-$HOME/.local/share}/bg"
+readonly linkpath="${XDG_DATA_HOME:-$HOME/pic}/bg"
 
 setwallpaper() {
 	xwallpaper --zoom "$*"

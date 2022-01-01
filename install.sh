@@ -10,23 +10,19 @@ ln -sv ${BASEDIR}/.inputrc ~/.inputrc
 # x11
 ln -sv ${BASEDIR}/.xinitrc ~/.xinitrc
 ln -sv ${BASEDIR}/.Xresources ~/.Xresources
-ln -sv ${BASEDIR}/.xsettingsd ~/.xsettingsd
 
-# config
-mkdir ~/.config/{dunst,flameshot,fontconfig,gtk-2.0,gtk-3.0,lf,mpv,nvim,pipewire,zathura}
+# config mkdir ~/.config/{dunst,flameshot,fontconfig,gtk-2.0,gtk-3.0,lf,mpv,nvim,pipewire,zathura}
 mkdir ~/.config/fontconfig/conf.d
 mkdir ~/.config/mpv/{script-opts,scripts}
 mkdir ~/.config/pipewire/media-session.d
 ln -sv ${BASEDIR}/.config/dunst/dunstrc ~/.config/dunst/dunstrc
 ln -sv ${BASEDIR}/.config/flameshot/flameshot.ini ~/.config/flameshot/flameshot.ini
 ln -sv ${BASEDIR}/.config/fontconfig/fonts.conf ~/.config/fontconfig/fonts.conf
-ln -sv /usr/share/fontconfig/conf.avail/10-autohint.conf ~/.config/fontconfig/conf.d/10-autohint.conf
 ln -sv /usr/share/fontconfig/conf.avail/10-hinting-slight.conf ~/.config/fontconfig/conf.d/10-hinting-slight.conf
-ln -sv /usr/share/fontconfig/conf.avail/10-scale-bitmap-fonts.conf ~/.config/fontconfig/conf.d/10-scale-bitmap-fonts.conf
 ln -sv /usr/share/fontconfig/conf.avail/10-sub-pixel-rgb.conf ~/.config/fontconfig/conf.d/10-sub-pixel-rgb.conf
 ln -sv /usr/share/fontconfig/conf.avail/11-lcdfilter-default.conf ~/.config/fontconfig/conf.d/11-lcdfilter-default.conf
 ln -sv /usr/share/fontconfig/conf.avail/70-noto-cjk.conf ~/.config/fontconfig/conf.d/70-noto-cjk.conf
-ln -sv /usr/share/fontconfig/conf.avail/90-synthetic.conf ~/.config/fontconfig/conf.d/90-synthetic.conf
+ln -sv ${BASEDIR}/.config/fontconfig/conf.d/20-symbols.conf ~/.config/fontconfig/conf.d/20-symbols.conf
 ln -sv ${BASEDIR}/.config/gtk-2.0/gtkrc-2.0 ~/.config/gtk-2.0/gtkrc-2.0
 ln -sv ${BASEDIR}/.config/gtk-3.0/settings.ini ~/.config/gtk-3.0/settings.ini
 ln -sv ${BASEDIR}/.config/lf/lfrc ~/.config/lf/lfrc
@@ -36,10 +32,6 @@ ln -sv ${BASEDIR}/.config/mpv/scripts/youtube-quality-osc.lua ~/.config/mpv/scri
 ln -sv ${BASEDIR}/.config/mpv/scripts/youtube-quality.lua ~/.config/mpv/scripts/youtube-quality.lua
 ln -sv ${BASEDIR}/.config/nvim/init.vim ~/.config/nvim/init.vim
 ln -sv ${BASEDIR}/.config/pipewire/pipewire.conf ~/.config/pipewire/pipewire.conf
-ln -sv ${BASEDIR}/.config/pipewire/media-session.d/alsa-monitor.conf ~/.config/pipewire/media-session.d/alsa-monitor.conf
-ln -sv ${BASEDIR}/.config/pipewire/media-session.d/bluez-monitor.conf ~/.config/pipewire/media-session.d/bluez-monitor.conf
-ln -sv ${BASEDIR}/.config/pipewire/media-session.d/media-session.conf ~/.config/pipewire/media-session.d/media-session.conf
-ln -sv ${BASEDIR}/.config/pipewire/media-session.d/v4l2-monitor.conf ~/.config/pipewire/media-session.d/v4l2-monitor.conf
 ln -sv ${BASEDIR}/.config/zathura/zathurarc ~/.config/zathura/zathurarc
 ln -sv ${BASEDIR}/.config/mimeapps.list ~/.config/mimeapps.list
 

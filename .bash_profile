@@ -19,7 +19,6 @@ export VISUAL="nvim"
 export TERMINAL="st"
 export BROWSER="chromium"
 export READER="zathura"
-export COLORTERM="truecolor"
 export VIDEO="mpv"
 export IMAGE="sxiv"
 

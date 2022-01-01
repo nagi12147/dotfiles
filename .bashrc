@@ -1,4 +1,4 @@
-#
+
 # ~/.bashrc
 #
 
@@ -10,6 +10,8 @@ set -o vi
 
 stty -ixon	# Disable ctrl-s and ctrl-q.
 shopt -s autocd	# Allows you to cd into directory merely by typing the directory name.
+shopt -s cdspell # autocorrects cd misspellings
+
 command -v nvim >/dev/null && alias vimdiff="nvim -d" # Use neovim for vimdiff if present.
 bind "set completion-ignore-case on"
 
@@ -20,21 +22,52 @@ HISTFILESIZE=
 # Color
 alias diff="diff --color=auto"
 alias grep="grep --color=auto"
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
 alias ip="ip -color=auto"
 alias ls="ls -a --color=auto --group-directories-first"
 LS_COLORS="di=1;35:fi=0:ln=31:pi=5:so=5:bd=5:cd=5:or=31:mi=0:ex=35:*.rpm=90:*.png=35:*.gif=36:*.jpg=35:*.c=92:*.jar=33:*.py=93:*.h=90:*.txt=94:*.doc=104:*.docx=104:*.odt=104:*.csv=102:*.xlsx=102:*.xlsm=102:*.rb=31:*.cpp=92:*.sh=92:*.html=96:*.zip=4;33:*.tar.gz=4;33:*.mp4=105:*.mp3=106"
 export LS_COLORS
 
-# Short
+# Optimized
 alias rm="rm -vI"
 alias cp="cp -iv"
 alias mv="mv -iv"
-alias v="nvim"
-alias c="connmanctl"
-alias g="git"
 alias reboot="loginctl reboot"
 alias poweroff="loginctl poweroff"
 alias merge="xrdb ~/.Xresources"
+
+# singkatan
+alias v="nvim"
+alias g="git"
+alias k="killall"
+
+### ARCHIVE EXTRACTION
+# usage: ex <file>
+ex ()
+{
+  if [ -f "$1" ] ; then
+    case $1 in
+      *.tar.bz2)   tar xjf $1   ;;
+      *.tar.gz)    tar xzf $1   ;;
+      *.bz2)       bunzip2 $1   ;;
+      *.rar)       unrar x $1   ;;
+      *.gz)        gunzip $1    ;;
+      *.tar)       tar xf $1    ;;
+      *.tbz2)      tar xjf $1   ;;
+      *.tgz)       tar xzf $1   ;;
+      *.zip)       unzip $1     ;;
+      *.Z)         uncompress $1;;
+      *.7z)        7z x $1      ;;
+      *.deb)       ar x $1      ;;
+      *.tar.xz)    tar xf $1    ;;
+      *.tar.zst)   unzstd $1    ;;
+      *)           echo "'$1' cannot be extracted via ex()" ;;
+    esac
+  else
+    echo "'$1' is not a valid file"
+  fi
+}
 
 # LF Icons
 export LF_ICONS="\

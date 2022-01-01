@@ -35,7 +35,7 @@ local opts = {
     --these styles will be used for the whole playlist. More specific styling will need to be hacked in
     --
     --(a monospaced font is recommended but not required)
-    style_ass_tags = "{\\fnmonospace}",
+    style_ass_tags = "{\\fnmonospace\\fs10}",
 
     --paddings for top left corner
     text_padding_x = 5,
@@ -44,7 +44,7 @@ local opts = {
     --other
     menu_timeout = 10,
 
-    --use youtube-dl to fetch a list of available formats (overrides quality_strings)
+    --use yt-dlp to fetch a list of available formats (overrides quality_strings)
     fetch_formats = true,
 
     --default menu entries
@@ -112,7 +112,7 @@ function show_menu()
         draw_menu()
     end
     function choose_prefix(i)
-        if     i == selected and i == active then return opts.selected_and_active 
+        if     i == selected and i == active then return opts.selected_and_active
         elseif i == selected then return opts.selected_and_inactive end
 
         if     i ~= selected and i == active then return opts.unselected_and_active
@@ -157,11 +157,11 @@ function show_menu()
     mp.add_forced_key_binding(opts.toggle_menu_binding, "escape", destroy)
 
     draw_menu()
-    return 
+    return
 end
 
 local ytdl = {
-    path = "youtube-dl",
+    path = "yt-dlp",
     searched = false,
     blacklisted = {}
 }
@@ -186,16 +186,16 @@ function download_formats()
     url = string.gsub(url, "ytdl://", "") -- Strip possible ytdl:// prefix.
 
     -- don't fetch the format list if we already have it
-    if format_cache[url] ~= nil then 
+    if format_cache[url] ~= nil then
         local res = format_cache[url]
         return res, table_size(res)
     end
-    mp.osd_message("fetching available formats with youtube-dl...", 60)
+    mp.osd_message("fetching available formats with yt-dlp...", 60)
 
     if not (ytdl.searched) then
-        local ytdl_mcd = mp.find_config_file("youtube-dl")
+        local ytdl_mcd = mp.find_config_file("yt-dlp")
         if not (ytdl_mcd == nil) then
-            msg.verbose("found youtube-dl at: " .. ytdl_mcd)
+            msg.verbose("found yt-dlp at: " .. ytdl_mcd)
             ytdl.path = ytdl_mcd
         end
         ytdl.searched = true
@@ -220,7 +220,7 @@ function download_formats()
     end
 
     res = {}
-    msg.verbose("youtube-dl succeeded!")
+    msg.verbose("yt-dlp succeeded!")
     for i,v in ipairs(json.formats) do
         if v.vcodec ~= "none" then
             local fps = v.fps and v.fps.."fps" or ""
@@ -240,7 +240,7 @@ end
 
 
 -- register script message to show menu
-mp.register_script_message("toggle-quality-menu", 
+mp.register_script_message("toggle-quality-menu",
 function()
     if destroyer ~= nil then
         destroyer()

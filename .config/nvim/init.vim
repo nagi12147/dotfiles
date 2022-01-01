@@ -12,6 +12,7 @@ endif
 call plug#begin(system('echo -n "$HOME/.config/nvim/plugged"'))
 	Plug 'ap/vim-css-color'
 	Plug 'vimwiki/vimwiki'
+	Plug 'vim-airline/vim-airline'
 call plug#end()
 
 " Basic
@@ -22,6 +23,9 @@ set encoding=utf-8
 set number relativenumber
 set mouse=a
 set clipboard=unnamedplus
+set nobackup                    " No auto backups
+set noswapfile                  " No swap
+
 
 " Highlighting
 set incsearch
@@ -64,3 +68,5 @@ noremap S :%s//g<Left><Left>
 
 " Runs a script that cleans out tex build files whenever I close out of a .tex file.
 	autocmd VimLeave *.tex !texclear %
+
+let g:airline_powerline_fonts = 1
