@@ -28,10 +28,10 @@ call plug#end()
     set cursorline
 
 " color
-   " set termguicolors
+    set termguicolors
     set bg=dark
     let g:gruvbox_italic=1
-"    colorscheme gruvbox
+    colorscheme gruvbox
 
     "hi! LineNr guifg=#282a2e
     "hi! CursorLineNr guibg=#282a2e guifg=1

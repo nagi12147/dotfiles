@@ -1,23 +1,23 @@
-#
-# ~/.bash_profile
-#
+#!/bin/bash
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
 # ~/ Clean up
+export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
-export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DESKTOP_DIR="$HOME/"
 export XDG_DOWNLOAD_DIR="$HOME/dl"
 export XDG_DOCUMENTS_HOME="$HOME/doc"
 export XDG_MUSIC_HOME="$HOME/music"
 export XDG_PICTURES_DIR="$HOME/pic"
 export XDG_VIDEOS_DIR="$HOME/vid"
-export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
-export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
-export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
-export ANDROID_SDK_HOME="${XDG_CONFIG_HOME:-$HOME/.config}/android"
+
+export XAUTHORITY=/tmp/Xauthority
+export GTK2_RC_FILES="$XDG_CONFIG_HOME/gtk-2.0/gtkrc-2.0"
+export ANDROID_SDK_HOME="$XDG_CONFIG_HOME/android"
+export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
+export HISTFILE="$XDG_DATA_HOME/history"
 export DOTFILES="$HOME/.repo/dotfiles"
 
 # Default Programs
@@ -31,7 +31,7 @@ export IMAGE="sxiv"
 export FILE="lf"
 
 # Other
-export QT_QPA_PLATFORMTHEME="qt5ct"
+#export QT_QPA_PLATFORMTHEME="qt5ct"
 export QT_PLUGIN_PATH=/usr/lib/qt/plugins
 export GTK_IM_MODULE="fcitx"
 export QT_IM_MODULE="fcitx"
@@ -44,17 +44,16 @@ export MANPAGER="less -R --use-color -Dd+r -Du+b"
 # No histfile
 export LESSHISTFILE="-"
 
-# Speed up compile times
-# https://wiki.archlinux.org/index.php/Makepkg#Creating_optimized_packages
-MAKEFLAGS="-j$(($(nproc) + 1)) -l$(nproc)"; export MAKEFLAGS
-export CFLAGS="-Wall -Wextra -Wpedantic -march=native -O2 -pipe -fstack-protector-strong -fno-plt"
-export CXXFLAGS="$CFLAGS"
-
-# Adds `~/.local/bin/` and all subdirectories to $PATH
+# PATH
 export PATH="$PATH:$HOME/.local/bin:$HOME/.scripts"
 
-# Switch escape and caps if tty and no passwd required:
+# Switch escape and caps if tty and no passwd required
 sudo -n loadkeys "${XDG_DATA_HOME:-$HOME/.local/share}/ttymaps.kmap" 2>/dev/null
+
+# Autostart
+if [[ "$(tty)" = "/dev/tty1" ]]; then
+	exec startx
+fi
 
 # LF Icons
 export LF_ICONS="\
@@ -219,8 +218,3 @@ ex=:\
 *.pdf=:\
 *.nix=:\
 "
-
-# Autostart
-if [[ "$(tty)" = "/dev/tty1" ]]; then
-	exec startx
-fi
