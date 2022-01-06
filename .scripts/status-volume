@@ -2,18 +2,18 @@
 
 # Prints the current volume or 婢 if muted.
 
-[ $(pamixer --get-mute) = true ] && echo "ﱝ MUTED " && exit
+[ $(pamixer --get-mute) = true ] && echo 🔇 && exit
 
 vol="$(pamixer --get-volume)"
 
 if [ "$vol" -gt "70" ]; then
-	icon="墳"
+	icon="🔊"
 elif [ "$vol" -gt "30" ]; then
-	icon="奔"
+	icon="🔉"
 elif [ "$vol" -gt "0" ]; then
-	icon="奄"
+	icon="🔈"
 else
-        echo "婢 0 " && exit
+        echo 🔇 && exit
 fi
 
-echo "$icon $vol% "
+echo "$icon$vol%"

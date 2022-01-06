@@ -13,6 +13,7 @@ call plug#begin(system('echo -n "$HOME/.config/nvim/plugged"'))
 	Plug 'ap/vim-css-color'
 	Plug 'vimwiki/vimwiki'
     Plug 'vim-airline/vim-airline'
+    Plug 'morhetz/gruvbox'
 call plug#end()
 
 " Basic
@@ -24,18 +25,16 @@ call plug#end()
     set number relativenumber
     set mouse=a
     set clipboard=unnamedplus
-    set noswapfile                  " No swap
+    set noswapfile
     set cursorline
 
 " color
     set termguicolors
     set bg=dark
     let g:gruvbox_italic=1
+    let g:gruvbox_bold=1
+    let g:gruvbox_contrast_dark='hard'
     colorscheme gruvbox
-
-    "hi! LineNr guifg=#282a2e
-    "hi! CursorLineNr guibg=#282a2e guifg=1
-    "hi! CursorLine  guibg=#282a2e
 
 " autocompletion
     set wildmode=longest,list,full
