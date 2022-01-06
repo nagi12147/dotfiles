@@ -3,3 +3,52 @@
 # Basic
 set icons
 set shell bash
+set drawbox
+
+# Binding
+map <c-f> $lf -remote "send $id select '$(fzf)'"
+map b bulkrename
+map E extract
+map D delete
+map gh
+map g top
+
+map o &mimeopen $f
+map O $mimeopen --ask $f
+
+map <c-n> push :mkdir<space>
+map <c-r> reload
+map <c-s> set hidden!
+
+map A rename # at the very end
+map r push A<c-u> # new rename
+map I push A<c-a> # at the very beginning
+map i push A<a-b><a-b><a-f> # before extention
+map a push A<a-b> # after extention
+map W $setsid -f $TERMINAL >/dev/null 2>&1 # Open Terminal
+
+# Vars that depend on environmental variables
+$lf -remote "send $id set previewer ${XDG_CONFIG_HOME:-$HOME/.config}/lf/scope"
+
+# Commands
+cmd bulkrename $vidir
+
+cmd mkdir $mkdir -p "$(echo $* | tr ' ' '\ ')"
+
+cmd extract ${{
+	clear; tput cup $(($(tput lines)/3)); tput bold
+	set -f
+	printf "%s\n\t" "$fx"
+	printf "extract?[y/N]"
+	read ans
+	[ $ans = "y" ] && aunpack $fx
+}}
+
+cmd delete ${{
+	clear; tput cup $(($(tput lines)/3)); tput bold
+	set -f
+	printf "%s\n\t" "$fx"
+	printf "delete?[y/N]"
+	read ans
+	[ $ans = "y" ] && rm -rf -- $fx
+}}

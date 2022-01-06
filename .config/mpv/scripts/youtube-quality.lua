@@ -35,7 +35,7 @@ local opts = {
     --these styles will be used for the whole playlist. More specific styling will need to be hacked in
     --
     --(a monospaced font is recommended but not required)
-    style_ass_tags = "{\\fnmonospace\\fs10}",
+    style_ass_tags = "{\\fnmonospace}\\fs20",
 
     --paddings for top left corner
     text_padding_x = 5,
@@ -44,7 +44,7 @@ local opts = {
     --other
     menu_timeout = 10,
 
-    --use yt-dlp to fetch a list of available formats (overrides quality_strings)
+    --use youtube-dl to fetch a list of available formats (overrides quality_strings)
     fetch_formats = true,
 
     --default menu entries
@@ -161,7 +161,7 @@ function show_menu()
 end
 
 local ytdl = {
-    path = "yt-dlp",
+    path = "youtube-dl",
     searched = false,
     blacklisted = {}
 }
@@ -190,12 +190,12 @@ function download_formats()
         local res = format_cache[url]
         return res, table_size(res)
     end
-    mp.osd_message("fetching available formats with yt-dlp...", 60)
+    mp.osd_message("(QUALITY) Loading...", 60)
 
     if not (ytdl.searched) then
-        local ytdl_mcd = mp.find_config_file("yt-dlp")
+        local ytdl_mcd = mp.find_config_file("youtube-dl")
         if not (ytdl_mcd == nil) then
-            msg.verbose("found yt-dlp at: " .. ytdl_mcd)
+            msg.verbose("found youtube-dl at: " .. ytdl_mcd)
             ytdl.path = ytdl_mcd
         end
         ytdl.searched = true
@@ -206,7 +206,7 @@ function download_formats()
     local es, json, result = exec(command)
 
     if (es < 0) or (json == nil) or (json == "") then
-        mp.osd_message("fetching formats failed...", 1)
+        mp.osd_message("(QUALITY) Failed...", 1)
         msg.error("failed to get format list: " .. err)
         return {}, 0
     end
@@ -214,13 +214,13 @@ function download_formats()
     local json, err = utils.parse_json(json)
 
     if (json == nil) then
-        mp.osd_message("fetching formats failed...", 1)
+        mp.osd_message("(QUALITY) Failed...", 1)
         msg.error("failed to parse JSON data: " .. err)
         return {}, 0
     end
 
     res = {}
-    msg.verbose("yt-dlp succeeded!")
+    msg.verbose("(QUALITY) Succeeded!")
     for i,v in ipairs(json.formats) do
         if v.vcodec ~= "none" then
             local fps = v.fps and v.fps.."fps" or ""

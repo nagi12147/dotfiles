@@ -1,0 +1,14 @@
+#!/bin/bash
+
+if ifinstalled; then
+	ifinstalled dmenu maim xdotool || exit
+fi
+
+case "$(printf "selected area\\ncurrent window\\nfull screen\\nselected area (copy)\\ncurrent window (copy)\\nfull screen (copy)" | dmenu -i -p "Screenshot which area?")" in
+	"selected area") maim -s "$HOME/pic/screenshot/screenshot$(date '+%y%m%d-%H%M-%S').png" ;;
+	"current window") maim -i "$(xdotool getactivewindow)" "$HOME/pic/screenshot/screenshot$(date '+%y%m%d-%H%M-%S').png" ;;
+	"full screen") maim "$HOME/pic/screenshot/screenshot$(date '+%y%m%d-%H%M-%S').png" ;;
+	"selected area (copy)") maim -s | xclip -selection clipboard -t image/png ;;
+	"current window (copy)") maim -i "$(xdotool getactivewindow)" | xclip -selection clipboard -t image/png ;;
+	"full screen (copy)") maim | xclip -selection clipboard -t image/png ;;
+esac

@@ -6,6 +6,10 @@
 #	If given a directory, choose random file in it.
 #	If wal is installed, also generates a colorscheme.
 
+if ifinstalled; then
+	ifinstalled xwallpaper || exit
+fi
+
 readonly linkpath="${XDG_DATA_HOME:-$HOME/pic}/bg"
 
 setwallpaper() {

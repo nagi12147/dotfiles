@@ -18,5 +18,5 @@ for battery in /sys/class/power_supply/CMB*; do
 	# Will make a warn variable if discharging and low
 	[ "$status" = " " ] && [ "$capacity" -le 25 ] && warn=" "
 	# Prints the info
-	printf "%s%s%d%%" "$status" "$warn" "$capacity"; unset warn
+	printf "%s%s%d%% " "$status" "$warn" "$capacity"; unset warn
 done && printf "\\n"
