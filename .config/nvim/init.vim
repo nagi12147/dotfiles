@@ -1,23 +1,23 @@
 " NEOVIM CONFIG
 
-" Autoinstall Vim-Plug
-if ! filereadable(system('echo -n "${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim"'))
+if ! filereadable(system('echo -n "$XDG_CONFIG_HOME/nvim/autoload/plug.vim"'))
 	echo "Downloading junegunn/vim-plug to manage plugins..."
-	silent !mkdir -p ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/
-	silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ${XDG_CONFIG_HOME:-$HOME/.config}/nvim/autoload/plug.vim
+	silent !mkdir -p $XDG_CONFIG_HOME/nvim/autoload/
+	silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > $XDG_CONFIG_HOME/nvim/autoload/plug.vim
 	autocmd VimEnter * PlugInstall
 endif
 
 " Plugin
-call plug#begin(system('echo -n "$HOME/.config/nvim/plugged"'))
-	Plug 'ap/vim-css-color'
-	Plug 'vimwiki/vimwiki'
+call plug#begin(system('echo -n "$XDG_CONFIG_HOME/nvim/plugged"'))
+    Plug 'vimwiki/vimwiki'
     Plug 'vim-airline/vim-airline'
     Plug 'morhetz/gruvbox'
+    Plug 'ap/vim-css-color'
 call plug#end()
 
 " Basic
     let mapleader =" "
+    set nocompatible
     filetype plugin on
     syntax on
     set title
@@ -27,12 +27,11 @@ call plug#end()
     set clipboard=unnamedplus
     set noswapfile
     set cursorline
+    set noshowmode
 
 " color
     set termguicolors
     set bg=dark
-    let g:gruvbox_italic=1
-    let g:gruvbox_bold=1
     let g:gruvbox_contrast_dark='hard'
     colorscheme gruvbox
 
@@ -74,7 +73,6 @@ call plug#end()
 " Ensure files are read as what I want:
     let g:vimwiki_ext2syntax = {'.Rmd': 'markdown', '.rmd': 'markdown','.md': 'markdown', '.markdown': 'markdown', '.mdown': 'markdown'}
     let g:vimwiki_list = [{'path': '~/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
-    autocmd BufRead,BufNewFile *.ms,*.me,*.mom,*.man set filetype=groff
     autocmd BufRead,BufNewFile *.tex set filetype=tex
 
 " Automatically deletes all trailing whitespace and newlines at end of file on save. & reset cursor position
@@ -93,16 +91,21 @@ call plug#end()
 " auto delete all trailing whitespace
     autocmd BufWritePre * %s/\s\+$//e
 
-" airline
-    if !exists('g:airline_symbols')
-        let g:airline_symbols = {}
-    endif
-    " powerline symbols
-    let g:airline_symbols.branch = ''
-    let g:airline_symbols.readonly = ''
-    let g:airline_symbols.dirty='⚡'
-    let g:airline_symbols.maxlinenr = ''
-    let g:airline_symbols.paste = 'ρ'
-    let g:airline_symbols.spell = 'Ꞩ'
-    let g:airline_symbols.notexists = 'Ɇ'
-    let g:airline_symbols.whitespace = ''
+" Save file as sudo on files that require root permission
+	cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
+
+" custom symbols for airline
+  if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+  endif
+
+  let g:airline_symbols.colnr = ':'
+  let g:airline_symbols.crypt = '🔒'
+  let g:airline_symbols.linenr = ' '
+  let g:airline_symbols.maxlinenr = ''
+  let g:airline_symbols.branch = ''
+  let g:airline_symbols.paste = 'ρ'
+  let g:airline_symbols.notexists = 'Ɇ'
+  let g:airline_symbols.whitespace = 'Ξ'
+  let g:airline_symbols.readonly = ''
+  let g:airline_symbols.dirty='⚡'

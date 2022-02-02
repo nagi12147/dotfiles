@@ -1,0 +1,45 @@
+#!/bin/sh
+
+if [ -e /sys/class/power_supply/CMB?* ]; then #BAT
+    for battery in /sys/class/power_supply/CMB?*; do #BAT
+        status=$(cat "$battery/status")
+        case "$status" in
+            "Full")
+                status=""
+                ;;
+            "Discharging")
+                status=""
+                ;;
+            "Charging")
+                status=""
+                ;;
+            "Not charging")
+                status=""
+                statusprefix="!"
+                ;;
+            "Unknown")
+                status=""
+                statusprefix="?"
+                ;;
+        esac
+        capacity=$(cat "$battery/capacity")
+        if [ "$status" = "" ]; then
+            caprange="$((capacity / 10))"
+            case "$caprange" in
+                9) status="" ;;
+                8) status="" ;;
+                7) status="" ;;
+                6) status="" ;;
+                5) status="" ;;
+                4) status="" ;;
+                3) status="" ;;
+                2) status="" ;;
+                1) status="" & notify-send -u critical "Battery" "Waktunya ngecas bos !!" ;;
+                0) status="" ;;
+            esac
+        fi
+        echo "$status $statusprefix$capacity%"
+    done
+else
+    exit 1
+fi

@@ -1,0 +1,5 @@
+#!/bin/sh
+
+icon=""
+datetime="$(date +"%Y/%m/%d（%a）%H:%M")"
+printf "$icon $datetime"

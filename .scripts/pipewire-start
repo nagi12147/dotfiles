@@ -1,9 +1,0 @@
-#!/bin/sh
-
-if ifinstalled; then
-	ifinstalled pipewire pipewire-pulse || exit
-fi
-
-killall pipewire; /usr/bin/pipewire &
-killall pipewire-pulse; /usr/bin/pipewire-pulse &
-killall pipewire-media-session; /usr/bin/pipewire-media-session

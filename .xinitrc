@@ -1,25 +1,24 @@
 #!/bin/sh
 
+# dbus
 if which dbus-launch >/dev/null && test -z "$DBUS_SESSION_BUS_ADDRESS"; then
        eval `dbus-launch --sh-syntax --exit-with-session`
 fi
 
-# Ensure that xrdb has finished running before moving on to start the WM/DE.
-[ -n "$xrdbpid" ] && wait "$xrdbpid"
-
-xrdb ~/.Xresources & xrdbpid=$!
+setbg &
+dwmblocks &
+picom &
 xrandr --dpi 117
 xbacklight -set 30
-remaps &
-setbg &
+xrdb $HOME/.Xresources & xrdbpid=$!
+pipewire &
 play-with-mpv &
-#pipewire-start &
+xmousepasteblock &
+fcitx &
+unclutter -idle 3 &
+dunst &
 
-autostart="slstatus dunst unclutter xmousepasteblock fcitx pipewire"
+# Ensure that xrdb has finished running before start
+[ -n "$xrdbpid" ] && wait "$xrdbpid"
 
-for program in $autostart; do
-	pidof -s "$program" || setsid -f "$program"
-done >/dev/null 2>&1
-
-# Launch
-exec dwm
+exec dwm > /dev/null 2>&1
