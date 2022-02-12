@@ -5,11 +5,11 @@ if which dbus-launch >/dev/null && test -z "$DBUS_SESSION_BUS_ADDRESS"; then
        eval `dbus-launch --sh-syntax --exit-with-session`
 fi
 
-setbg &
-dwmblocks &
-picom &
 xrandr --dpi 117
-xbacklight -set 30
+xbacklight -set 15
+picom &
+dwmblocks &
+setbg &
 xrdb $HOME/.Xresources & xrdbpid=$!
 pipewire &
 play-with-mpv &

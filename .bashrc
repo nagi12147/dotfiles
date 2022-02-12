@@ -9,10 +9,11 @@ PS1=" \[$(tput bold)\]\[$(tput setaf 5)\]\w\[$(tput sgr0)\] $ "
 
 # Input
 set -o vi
-stty -ixon
 shopt -s autocd
 shopt -s cdspell
+shopt -s histappend
 bind "set completion-ignore-case on"
+stty -ixon
 
 # No need to type sudo or loginctl for certain command
 for command in mount umount sv pacman shutdown ; do
