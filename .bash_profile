@@ -24,6 +24,7 @@ export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
 export HISTFILE="$XDG_DATA_HOME/history"
 export XAUTHORITY="/tmp/Xauthority"
 export DOTFILES="$HOME/.repo/dotfiles"
+export GTK2_RC_FILES="$HOME/.config/gtk-2.0/gtkrc-2.0"
 
 # History
 export LESSHISTFILE="-"
