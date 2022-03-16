@@ -1,5 +1,0 @@
-#!/bin/sh
-
-icon=""
-datetime="$(date +"%H:%M")"
-printf "$icon $datetime"

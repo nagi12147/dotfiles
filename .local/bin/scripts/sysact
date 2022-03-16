@@ -5,9 +5,10 @@ case "$(readlink -f /sbin/init)" in
 	*) ctl='loginctl' ;;
 esac
 
-case "$(printf "logout\nreboot\nshutdown" | dmenu -i -p 'Action: ')" in
+case "$(printf "logout\nreboot\nshutdown\ndisplay off" | dmenu -i -p 'Action: ')" in
 	'logout') kill -TERM "$(pgrep -u "$USER" "\bdwm$")" ;;
 	'reboot') $ctl reboot ;;
 	'shutdown') $ctl poweroff ;;
+    'display off') xset dpms force off ;;
 	*) exit 1 ;;
 esac

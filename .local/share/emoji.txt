@@ -281,7 +281,7 @@
 🛌 person in bed; 1F6CC;
 👭 women holding hands; 1F46D;
 👫 woman and man holding hands; 1F46B;
-👬 men holding hands; 1F46C;
+👬 men olding hands; 1F46C;
 💏 kiss; 1F48F;
 💑 couple with heart; 1F491;
 👪 family; 1F46A;

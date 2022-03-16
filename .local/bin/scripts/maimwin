@@ -1,2 +1,2 @@
 #!/bin/sh
-maim -i "$(xdotool getactivewindow)" "$HOME/pic/ss/screenshot-$(date '+%y%m%d-%H%M-%S').png" & notify-send "$HOME/pic/ss/screenshot-$(date '+%y%m%d-%H%M-%S').png"
+maim -i "$(xdotool getactivewindow)" "$HOME/pics/ss/screenshot-$(date '+%y%m%d-%H%M-%S').png" & notify-send "$HOME/pics/ss/screenshot-$(date '+%y%m%d-%H%M-%S').png"

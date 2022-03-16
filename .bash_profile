@@ -20,16 +20,17 @@ export FILE="lf"
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_CACHE_HOME="$HOME/.cache"
-export WGETRC="$XDG_CONFIG_HOME/wget/wgetrc"
-export HISTFILE="$XDG_DATA_HOME/history"
-export XAUTHORITY="/tmp/Xauthority"
-export DOTFILES="$HOME/.repo/dotfiles"
-export GTK2_RC_FILES="$HOME/.config/gtk-2.0/gtkrc-2.0"
+export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
+export WGETRC="${XDG_CONFIG_HOME:-$HOME/.config}/wget/wgetrc"
+export XAUTHORITY="$XDG_RUNTIME_DIR/Xauthority"
+export GTK2_RC_FILES="${XDG_CONFIG_HOME:-$HOME/.config}/gtk-2.0/gtkrc-2.0"
 
 # History
 export LESSHISTFILE="-"
-export HISTSIZE="10000000"
-export HISTFILESIZE="10000000"
+export HISTFILE="${XDG_DATA_HOME:-$HOME/.local/share}/history"
+export HISTSIZE=
+export HISTFILESIZE=
+PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 # Color
 export LESS=-R
@@ -44,11 +45,16 @@ export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
 export MANPAGER="less -R --use-color -Dd+r -Du+b"
 
 # Other
-export QT_QPA_PLATFORMTHEME="qt6ct"
+export QT_QPA_PLATFORMTHEME="qt5ct"
 export QT_PLUGIN_PATH=/usr/lib/qt/plugins
 export GTK_IM_MODULE="fcitx"
 export QT_IM_MODULE="fcitx"
 export XMODIFIERS=@im="fcitx"
+
+# Fix Java programs
+# https://wiki.archlinux.org/index.php/Java_Runtime_Environment_fonts
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=gasp'
+export _JAVA_AWT_WM_NONREPARENTING=1	# Fix for Java applications in dwm
 
 # lf icons
 export LF_ICONS="\

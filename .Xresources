@@ -1,4 +1,4 @@
-Xft.dpi: 117
+Xft.dpi: 115
 Xft.antialias: 1
 Xft.autohint: 0
 Xft.hinting: 1
@@ -6,8 +6,8 @@ Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
 Xft.rgba: rgb
 
-*background: #1d2021
-*foreground: #ebdbb2
+*background: #222222
+*foreground: #eeeeee
 *.cursorColor: #add8e6
 
 ! Gruvbox

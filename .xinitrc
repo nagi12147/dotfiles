@@ -5,18 +5,22 @@ if which dbus-launch >/dev/null && test -z "$DBUS_SESSION_BUS_ADDRESS"; then
        eval `dbus-launch --sh-syntax --exit-with-session`
 fi
 
-xrandr --dpi 117
-xbacklight -set 15
-picom &
-dwmblocks &
-setbg &
+xrandr --dpi 115
 xrdb $HOME/.Xresources & xrdbpid=$!
-pipewire &
-play-with-mpv &
+#brightnessctl set 20%
+xbacklight -set 20
+hsetroot -solid "#222222"
+
+dwmbar &
+xcompmgr &
+unclutter -idle 3 &
 xmousepasteblock &
 fcitx &
-unclutter -idle 3 &
 dunst &
+pipewire &
+pipewire-pulse &
+wireplumber &
+play-with-mpv &
 
 # Ensure that xrdb has finished running before start
 [ -n "$xrdbpid" ] && wait "$xrdbpid"

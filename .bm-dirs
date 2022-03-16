@@ -1,21 +1,44 @@
-cac  $HOME/.cache
-con  $HOME/.config
-dl   $HOME/dl
-d    $HOME/doc
-dai  $HOME/doc/daigaku
-kkn  $HOME/doc/daigaku/kkn
+cac     $HOME/.cache
+con     $HOME/.config
+h       $HOME
+mn      /mnt
 
-hon  $HOME/doc/hon
-h    $HOME
-m    $HOME/music
-mn   /mnt
-pic  $HOME/pic
-bg   $HOME/pic/bg
-ss   $HOME/pic/ss
-bin  $HOME/.local/bin/scripts
-sh   $HOME/.local/share
-fo   $HOME/.local/share/fonts
-vid  $HOME/vid
-an   $HOME/vid/anime
-repo $HOME/.repo
-dot  $HOME/.repo/dotfiles
+dl      $HOME/dl
+pkg     $HOME/dl/pkg
+
+do      $HOME/docs
+dai     $HOME/docs/daigaku
+kkn     $HOME/docs/daigaku/kkn
+int     $HOME/docs/daigaku/internship
+kai     $HOME/docs/daigaku/kaiwa
+mogi    $HOME/docs/daigaku/mogi-jugyo
+pene    $HOME/docs/daigaku/penelitian-pendidikan
+psi     $HOME/docs/daigaku/psikopen
+saku    $HOME/docs/daigaku/sakubun
+stat    $HOME/docs/daigaku/statistik
+hon     $HOME/docs/hon
+lin     $HOME/docs/linux
+jis     $HOME/docs/jisho
+bak     $HOME/docs/backup
+
+m       $HOME/music
+
+pics    $HOME/pics
+bg      $HOME/pics/bg
+ss      $HOME/pics/ss
+mome    $HOME/pics/momen
+
+bin     $HOME/.local/bin/scripts
+sh      $HOME/.local/share
+fo      $HOME/.local/share/fonts
+app     $HOME/.local/share/applications
+
+vid     $HOME/vids
+an      $HOME/vids/anime
+
+repo    $HOME/.repo
+dot     $HOME/.repo/dotfiles
+dwm     $HOME/.repo/dwm
+st      $HOME/.repo/st
+dme     $HOME/.repo/dmenu
+dwmb    $HOME/.repo/dwmblocks

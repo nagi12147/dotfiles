@@ -49,7 +49,6 @@ handle_mime() {
         image/*) mediainfo "${FILE_PATH}" || exit 1;;
         video/* | audio/*|application/octet-stream) mediainfo "${FILE_PATH}" || exit 1;;
         */pdf) pdftotext -l 10 -nopgbrk -q -- "${FILE_PATH}" - ;;
-#        *opendocument*) odt2txt "${FILE_PATH}" ;;
     esac
 }
 

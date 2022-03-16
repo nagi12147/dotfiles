@@ -1,5 +1,0 @@
-#!/bin/sh
-
-wifi=$(nmcli -c no device status | grep 'connected' | xargs echo -n | awk '{print $4}')
-
-printf " $wifi"

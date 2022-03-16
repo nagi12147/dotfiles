@@ -1,14 +1,14 @@
 " NEOVIM CONFIG
 
-if ! filereadable(system('echo -n "$XDG_CONFIG_HOME/nvim/autoload/plug.vim"'))
-	echo "Downloading junegunn/vim-plug to manage plugins..."
-	silent !mkdir -p $XDG_CONFIG_HOME/nvim/autoload/
-	silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > $XDG_CONFIG_HOME/nvim/autoload/plug.vim
-	autocmd VimEnter * PlugInstall
-endif
+"if ! filereadable(system('echo -n "~/.config/nvim/autoload/plug.vim"'))
+"	echo "Downloading junegunn/vim-plug to manage plugins..."
+"	silent !mkdir -p ~/.config/nvim/autoload/
+"	silent !curl "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim" > ~/.config/nvim/autoload/plug.vim
+"	autocmd VimEnter * PlugInstall
+"endif
 
 " Plugin
-call plug#begin(system('echo -n "$XDG_CONFIG_HOME/nvim/plugged"'))
+call plug#begin(system('echo -n "~/.config/nvim/plugged"'))
     Plug 'vimwiki/vimwiki'
     Plug 'vim-airline/vim-airline'
     Plug 'morhetz/gruvbox'
@@ -34,6 +34,7 @@ call plug#end()
     set bg=dark
     let g:gruvbox_contrast_dark='hard'
     colorscheme gruvbox
+    hi Normal guibg=NONE ctermbg=NONE
 
 " autocompletion
     set wildmode=longest,list,full

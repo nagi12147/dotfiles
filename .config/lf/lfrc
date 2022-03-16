@@ -7,30 +7,33 @@ set ifs "\n"
 set scrolloff 10
 set period 1
 set hiddenfiles ".*:*.aux:*.log:*.bbl:*.bcf:*.blg:*.run.xml"
+set previewer '~/.config/lf/scope'
 
 # Binding
-map <c-f> $lf -remote "send $id select '$(fzf)'"
-map b bulkrename
+map B bulkrename
 map E extract
 map D delete
 map M moveto
 map gh
 map g top
-map o &mimeopen $f
-map O $mimeopen --ask $f
+map x $$f
+map X !$f
+map o &mimeopen "$f"
+map O $mimeopen --ask "$f"
 map <enter> shell
+map <c-f> $lf -remote "send $id select '$(fzf)'"
 map <c-n> push :mkdir<space>
 map <c-r> reload
-map <c-s> set hidden!
+map <backspace> set hidden!
+
+map R reload
 map A rename # at the very end
 map r push A<c-u> # new rename
 map I push A<c-a> # at the very beginning
 map i push A<a-b><a-b><a-f> # before extention
 map a push A<a-b> # after extention
 map W $setsid -f $TERMINAL >/dev/null 2>&1 # Open Terminal
-
-# Vars that depend on environmental variables
-$lf -remote "send $id set previewer $HOME/.config/lf/scope"
+map Y $printf "%s" "$fx" | xclip -selection clipboard
 
 # Commands
 cmd bulkrename $vidir
@@ -43,7 +46,7 @@ cmd extract ${{
 	printf "%s\n\t" "$fx"
 	printf "extract?[y/N]"
 	read ans
-	[ $ans = "y" ] && aunpack $fx
+	[ $ans = "y" ] && ex $fx
 }}
 
 cmd delete ${{

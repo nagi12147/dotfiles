@@ -14,8 +14,8 @@
 
   frame_width = 0
   separator_height = 0
-  frame_color = "#1d2021"
-  separator_color = "#1d2021"
+  frame_color = "#222222"
+  separator_color = "#222222"
 
   sort = no
   font = monospace 10
@@ -43,15 +43,15 @@
 
 [urgency_low]
   background = "#a89984"
-  foreground = "#1d2021"
+  foreground = "#222222"
   timeout = 5
 
 [urgency_normal]
   background = "#282828"
-  foreground = "#ebdbb2"
+  foreground = "#eeeeee"
   timeout = 10
 
 [urgency_critical]
-  background = "#b16286"
-  foreground = "#1d2021"
+  background = "#005577"
+  foreground = "#eeeeee"
   timeout = 20

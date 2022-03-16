@@ -1,0 +1,110 @@
+#!/bin/sh
+
+red=#fb4934
+green=#8ec07c
+blue=#83a598
+
+netraf() {
+    update() {
+		sum=0
+		for arg; do
+			read -r i < "$arg"
+			sum=$(( sum + i ))
+		done
+		cache=${XDG_CACHE_HOME:-$HOME/.cache}/${1##*/}
+		[ -f "$cache" ] && read -r old < "$cache" || old=0
+		printf %d\\n "$sum" > "$cache"
+		printf %d\\n $(( sum - old ))
+	}
+
+	rx=$(update /sys/class/net/[ew]*/statistics/rx_bytes)
+	tx=$(update /sys/class/net/[ew]*/statistics/tx_bytes)
+
+	printf "^c$green^^d^ %sB ^c$blue^^d^ %sB\\n" $(numfmt --to=iec $rx) $(numfmt --to=iec $tx)
+
+}
+
+wifi() {
+    if grep -xq 'up' /sys/class/net/w*/operstate 2>/dev/null ; then
+        wlan="直 $(iwctl station wlan0 show | grep 'Connected network' | sed -r 's/Connected network//g' | sed -r 's/[[:space:]]+//g')"
+    elif grep -xq 'down' /sys/class/net/w*/operstate 2>/dev/null ; then
+	grep -xq '0x1003' /sys/class/net/w*/flags && wifiicon=" 睊 --"
+    fi
+
+    printf "$wlan"
+}
+
+vol() {
+	[ $(pamixer --get-mute) = true ] && echo 婢 && exit
+
+	vol="$(pamixer --get-volume)"
+
+	if [ "$vol" -gt "70" ]; then
+		icon=""
+	elif [ "$vol" -gt "30" ]; then
+		icon=""
+	elif [ "$vol" -gt "0" ]; then
+		icon=""
+	else
+		echo ﱝ && exit
+	fi
+	echo "$icon $vol%"
+}
+
+batstate() {
+    state=$(cat /sys/class/power_supply/CMB*/status)
+    if   [ $state = "charging" ] || [ $state = "Charging" ]; then
+        printf "" # charging
+    elif [ $state = "discharging" ] || [ $state = "Discharging" ]; then
+        printf "" # discharging
+    elif [ $state = "idle" ] || [ $state = "Unknown" ]; then
+        printf "" # idle
+    else
+        printf "" # unknown
+    fi
+}
+
+bat() {
+    cap=$(cat /sys/class/power_supply/CMB*/capacity)
+    if   [ $cap -ge 0 ] && [ $cap -le 10 ]; then
+        printf "^f5^^r2,8,2,4^^r4,5,18,10^^c#222222^^r5,6,16,8^^c#cc241d^^r19,7,1,6^^d^^f25^"$cap
+
+    elif [ $cap -ge 11 ] && [ $cap -le 20 ]; then
+        printf "^f5^^r2,8,2,4^^r4,5,18,10^^c#222222^^r5,6,16,8^^c#cc241d^^r17,7,3,6^^d^^f25^"$cap
+
+    elif [ $cap -ge 21 ] && [ $cap -le 30 ]; then
+        printf "^f5^^r2,8,2,4^^r4,5,18,10^^c#222222^^r5,6,16,8^^c#fe8019^^r16,7,4,6^^d^^f25^"$cap
+
+    elif [ $cap -ge 31 ] && [ $cap -le 40 ]; then
+        printf "^f5^^r2,8,2,4^^r4,5,18,10^^c#222222^^r5,6,16,8^^c#b8bb26^^r15,7,5,6^^d^^f25^"$cap
+    elif [ $cap -ge 41 ] && [ $cap -le 50 ]; then
+        printf "^f5^^r2,8,2,4^^r4,5,18,10^^c#222222^^r5,6,16,8^^c#b8bb26^^r14,7,6,6^^d^^f25^"$cap
+    elif [ $cap -ge 51 ] && [ $cap -le 60 ]; then
+        printf "^f5^^r2,8,2,4^^r4,5,18,10^^c#222222^^r5,6,16,8^^c#b8bb26^^r13,7,7,6^^d^^f25^"$cap
+    elif [ $cap -ge 61 ] && [ $cap -le 70 ]; then
+        printf "^f5^^r2,8,2,4^^r4,5,18,10^^c#222222^^r5,6,16,8^^c#b8bb26^^r12,7,8,6^^d^^f25^"$cap
+    elif [ $cap -ge 71 ] && [ $cap -le 80 ]; then
+        printf "^f5^^r2,8,2,4^^r4,5,18,10^^c#222222^^r5,6,16,8^^c#b8bb26^^r11,7,9,6^^d^^f25^"$cap
+    elif [ $cap -ge 81 ] && [ $cap -le 90 ]; then
+        printf "^f5^^r2,8,2,4^^r4,5,18,10^^c#222222^^r5,6,16,8^^c#b8bb26^^r10,7,10,6^^d^^f25^"$cap
+    elif [ $cap -ge 91 ] && [ $cap -le 99 ]; then
+        printf "^f5^^r2,8,2,4^^r4,5,18,10^^c#222222^^r5,6,16,8^^c#b8bb26^^r8,7,12,6^^d^^f25^"$cap
+    elif [ $cap -eq 100 ]; then
+        printf "^f5^^r2,8,2,4^^r4,5,18,10^^c#222222^^r5,6,16,8^^c#b8bb26^^r6,7,14,6^^d^^f25^"$cap
+    else
+        # echo ""
+        printf "^f5^^r2,8,2,4^^r4,5,18,10^^c#222222^^r5,6,16,8^^c#222222^^r5,7,14,6^^d^^f25^" "?"
+    fi
+}
+
+fulldate() {
+    icon=""
+    datetime="$(date +"%Y/%m/%d（%a）%H:%M")"
+    printf "$icon $datetime"
+
+}
+
+while true; do
+    dwm -s " $(netraf) $(wifi) $(vol) $(batstate)$(bat) $(fulldate)"
+    sleep 0.2
+done
