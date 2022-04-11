@@ -9,7 +9,7 @@
 
   width = (0,350)
   height = (0,150)
-  offset = 10x31
+  offset = 6x31
   origin = top-right
 
   frame_width = 0
@@ -42,9 +42,9 @@
   mouse_right_click = close_all
 
 [urgency_low]
-  background = "#a89984"
-  foreground = "#222222"
-  timeout = 5
+  background = "#222222"
+  foreground = "#bbbbbb"
+  timeout = 7
 
 [urgency_normal]
   background = "#282828"

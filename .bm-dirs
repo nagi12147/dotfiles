@@ -3,38 +3,10 @@ con     $HOME/.config
 h       $HOME
 mn      /mnt
 
-dl      $HOME/dl
-pkg     $HOME/dl/pkg
-
-do      $HOME/docs
-dai     $HOME/docs/daigaku
-kkn     $HOME/docs/daigaku/kkn
-int     $HOME/docs/daigaku/internship
-kai     $HOME/docs/daigaku/kaiwa
-mogi    $HOME/docs/daigaku/mogi-jugyo
-pene    $HOME/docs/daigaku/penelitian-pendidikan
-psi     $HOME/docs/daigaku/psikopen
-saku    $HOME/docs/daigaku/sakubun
-stat    $HOME/docs/daigaku/statistik
-hon     $HOME/docs/hon
-lin     $HOME/docs/linux
-jis     $HOME/docs/jisho
-bak     $HOME/docs/backup
-
-m       $HOME/music
-
-pics    $HOME/pics
-bg      $HOME/pics/bg
-ss      $HOME/pics/ss
-mome    $HOME/pics/momen
-
 bin     $HOME/.local/bin/scripts
 sh      $HOME/.local/share
 fo      $HOME/.local/share/fonts
 app     $HOME/.local/share/applications
-
-vid     $HOME/vids
-an      $HOME/vids/anime
 
 repo    $HOME/.repo
 dot     $HOME/.repo/dotfiles
@@ -42,3 +14,40 @@ dwm     $HOME/.repo/dwm
 st      $HOME/.repo/st
 dme     $HOME/.repo/dmenu
 dwmb    $HOME/.repo/dwmblocks
+
+dl      $HOME/dl
+pkg     $HOME/dl/pkg
+ext     $HOME/dl/ext
+
+do      $HOME/docs
+ba      $HOME/docs/backup
+and     $HOME/docs/backup/android
+sd      $HOME/docs/backup/sdcard
+dai     $HOME/docs/daigaku
+ben     $HOME/docs/benkyou
+cho     $HOME/docs/daigaku/semester6/choukai
+int     $HOME/docs/daigaku/semester6/internship
+kai     $HOME/docs/daigaku/semester6/kaiwa
+kkn     $HOME/docs/daigaku/semester6/kkn
+mogi    $HOME/docs/daigaku/semester6/mogi-jugyo
+pene    $HOME/docs/daigaku/semester6/penelitian-pendidikan
+psi     $HOME/docs/daigaku/semester6/psikopen
+saku    $HOME/docs/daigaku/semester6/sakubun
+stat    $HOME/docs/daigaku/semester6/statistik
+hon     $HOME/docs/hon
+jis     $HOME/docs/jisho
+lin     $HOME/docs/linux
+arch    $HOME/docs/linux/arch
+art     $HOME/docs/linux/artix
+
+mu      $HOME/music
+
+pics    $HOME/pics
+bg      $HOME/pics/bg
+ss      $HOME/pics/ss
+mome    $HOME/pics/momen
+
+vid     $HOME/vids
+ani     $HOME/vids/anime
+dor     $HOME/vids/dorama
+mov     $HOME/vids/movie

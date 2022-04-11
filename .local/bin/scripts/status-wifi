@@ -1,0 +1,10 @@
+#!/bin/sh
+
+if grep -xq 'up' /sys/class/net/w*/operstate 2>/dev/null ; then
+#    wlan="直 $(iwctl station wlan0 show | grep 'Connected network' | sed -r 's/Connected network//g' | sed -r 's/[[:space:]]+//g')"
+    wlan="直 $(nmcli -t -f NAME connection show --active)"
+elif grep -xq 'down' /sys/class/net/w*/operstate 2>/dev/null ; then
+    grep -xq '0x1003' /sys/class/net/w*/flags && wlan=" 睊 --"
+fi
+
+printf "$wlan"

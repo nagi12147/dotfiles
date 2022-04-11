@@ -9,6 +9,10 @@ if [ "$EUID" -ne 0 ]
     else export PS1=" \[$(tput bold)\]\[\e[31m\]\w\[$(tput sgr0)\] # "    # root
 fi
 
+# Use bash-completion, if available
+[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
+    . /usr/share/bash-completion/bash_completion
+
 # Input
 set -o vi
 shopt -s autocd
@@ -42,10 +46,15 @@ LS_COLORS="di=1;34:fi=0:ln=31:pi=4:so=4:bd=4:cd=4:or=31:mi=0:ex=34:*.rpm=90:*.pn
 export LS_COLORS
 
 # Short
-alias f="$FILE"
 alias g="git"
+alias ga="git add"
+alias gs="git status"
 alias gc="git clone"
+alias gps="git push"
+alias gpl="git pull"
 alias ka="killall"
+alias man="man --locale=id"
+alias f="$FILE"
 alias m="$VIDEO"
 alias v="$EDITOR"
 alias z="$READER"

@@ -1,0 +1,17 @@
+#!/bin/sh
+
+vol="$(pactl get-sink-volume @DEFAULT_SINK@ | awk {'print $5'} | sed 's/%//')"
+
+[ $(pactl get-sink-mute @DEFAULT_SINK@ | awk {'print $2'}) = yes ] && echo "婢" && exit
+
+if [ "$vol" -gt "65" ]; then
+	icon="墳"
+elif [ "$vol" -gt "35" ]; then
+	icon="奔"
+elif [ "$vol" -gt "0" ]; then
+	icon="奄"
+else
+	echo "ﱝ" && exit
+fi
+
+echo "$icon $vol"

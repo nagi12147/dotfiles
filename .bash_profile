@@ -13,7 +13,7 @@ export TERMINAL="st"
 export BROWSER="chromium"
 export READER="zathura"
 export VIDEO="mpv"
-export IMAGE="sxiv"
+export IMAGE="nsxiv"
 export FILE="lf"
 
 # ~/ Clean-up

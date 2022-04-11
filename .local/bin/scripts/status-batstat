@@ -1,0 +1,12 @@
+#!/bin/sh
+
+state=$(cat /sys/class/power_supply/CMB*/status)
+if   [ $state = "charging" ] || [ $state = "Charging" ]; then
+    printf "" # charging
+elif [ $state = "discharging" ] || [ $state = "Discharging" ]; then
+    printf "" # discharging
+elif [ $state = "idle" ] || [ $state = "Unknown" ]; then
+    printf "" # idle
+else
+    printf " " # unknown
+fi
