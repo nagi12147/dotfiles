@@ -2,6 +2,10 @@
 
 # The famous "get a menu of emojis to copy" script.
 
+if ifinstalled; then
+	ifinstalled xdotool xclip dmenu || exit
+fi
+
 # Get user selection via dmenu from emoji file.
 chosen=$(cut -d ';' -f1 $HOME/.local/share/emoji.txt | dmenu -i -l 10 | sed "s/ .*//")
 

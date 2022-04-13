@@ -1,0 +1,8 @@
+#!/bin/sh
+
+if ifinstalled; then
+	ifinstalled xclip mpv || exit
+fi
+
+url=$(xclip -o)
+mpv --ytdl-format="bestvideo[height<=?480]+bestaudio/best" $url

@@ -45,16 +45,17 @@ alias ls="ls -hN --color=auto --group-directories-first"
 LS_COLORS="di=1;34:fi=0:ln=31:pi=4:so=4:bd=4:cd=4:or=31:mi=0:ex=34:*.rpm=90:*.png=34:*.gif=36:*.jpg=34:*.c=92:*.jar=33:*.py=93:*.h=90:*.txt=95:*.doc=105:*.docx=105:*.odt=105:*.csv=102:*.xlsx=102:*.xlsm=102:*.rb=31:*.cpp=92:*.sh=92:*.html=96:*.zip=4;33:*.tar.gz=4;33:*.mp4=105:*.mp3=106"
 export LS_COLORS
 
-# Short
+# Aliases
 alias g="git"
 alias ga="git add"
 alias gs="git status"
 alias gc="git clone"
-alias gps="git push"
+alias gcm="git commit -m"
+alias gp="git push"
 alias gpl="git pull"
 alias ka="killall"
 alias man="man --locale=id"
-alias f="$FILE"
+alias s="$IMAGE"
 alias m="$VIDEO"
 alias v="$EDITOR"
 alias z="$READER"

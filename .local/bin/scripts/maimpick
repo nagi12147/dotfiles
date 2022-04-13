@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if ifinstalled; then
+	ifinstalled dmenu maim xdotool || exit
+fi
+
+while getopts "wsf" o; do case "${o}" in
+	w) maim -i "$(xdotool getactivewindow)" "$HOME/pics/ss/screenshot-$(date '+%y%m%d-%H%M-%S').png" ; notify-send "$HOME/pics/ss/screenshot-$(date '+%y%m%d-%H%M-%S').png" ;;
+    s) maim -s "$HOME/pics/ss/screenshot-$(date '+%y%m%d-%H%M-%S').png" && notify-send "$HOME/pics/ss/screenshot-$(date '+%y%m%d-%H%M-%S').png" ;;
+	f) maim "$HOME/pics/ss/screenshot-$(date '+%y%m%d-%H%M-%S').png" ; notify-send "$HOME/pics/ss/screenshot-$(date '+%y%m%d-%H%M-%S').png" ;;
+esac done

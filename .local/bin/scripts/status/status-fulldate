@@ -2,4 +2,4 @@
 
 date="$(date +"%Y/%m/%d/%a")"
 clock="$(date +"%H:%M")"
-printf " $date $clock "
+printf " $date $clock"

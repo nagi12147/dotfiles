@@ -1,2 +1,0 @@
-#!/bin/sh
-maim "$HOME/pics/ss/screenshot-$(date '+%y%m%d-%H%M-%S').png" & notify-send "$HOME/pics/ss/screenshot-$(date '+%y%m%d-%H%M-%S').png"

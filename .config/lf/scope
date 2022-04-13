@@ -15,7 +15,7 @@ HIGHLIGHT_STYLE='pablo'
 handle_mime() {
     local mimetype="${1}"
     case "${mimetype}" in
-        text/html) lynx -width="$4" -display_charset=utf-8 -dump "$1"  ;;
+        text/html) lynx -display_charset=utf-8 -dump "${FILE_PATH}"  ;;
         text/troff) man ./ "${FILE_PATH}" | col -b ;;
         text/* | */xml)
             if [ "$( stat --printf='%s' -- "${FILE_PATH}" )" -gt "${HIGHLIGHT_SIZE_MAX}" ]; then
@@ -32,8 +32,8 @@ handle_mime() {
         image/*) mediainfo "${FILE_PATH}" || exit 1;;
         video/* | audio/*|application/octet-stream) mediainfo "${FILE_PATH}" || exit 1;;
         */pdf) pdftotext -l 10 -nopgbrk -q -- "${FILE_PATH}" - ;;
-        *opendocument*) odt2txt "$1" ;;
-        application/pgp-encrypted) gpg -d -- "$1" ;;
+        *opendocument*) odt2txt "${FILE_PATH}" ;;
+        application/pgp-encrypted) gpg -d -- "${FILE_PATH}" ;;
     esac
 }
 

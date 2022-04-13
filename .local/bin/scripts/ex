@@ -1,5 +1,9 @@
 #!/bin/sh
 
+if ifinstalled; then
+	ifinstalled zip unzip p7zip unrar || exit
+fi
+
 # A general, all-purpose extraction script. Not all extraction programs here
 # are installed by LARBS automatically.
 #

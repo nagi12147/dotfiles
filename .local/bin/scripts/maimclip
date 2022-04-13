@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if ifinstalled; then
+	ifinstalled dmenu maim xdotool || exit
+fi
+
+while getopts "wsf" o; do case "${o}" in
+	w) maim | xclip -selection clipboard -t image/png ;;
+    s) maim -s | xclip -selection clipboard -t image/png ;;
+	f) maim | xclip -selection clipboard -t image/png
+esac done

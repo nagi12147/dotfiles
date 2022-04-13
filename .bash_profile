@@ -3,7 +3,7 @@
 [[ -f ~/.bashrc ]] && . ~/.bashrc
 
 # Path
-export PATH="$PATH:$HOME/.local/bin:$HOME/.local/bin/scripts"
+export PATH="$PATH:$HOME/.local/bin:$HOME/.local/bin/scripts:$HOME/.local/bin/scripts/status"
 
 # Default Programs
 export WM="dwm"
@@ -45,7 +45,7 @@ export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
 export MANPAGER="less -R --use-color -Dd+r -Du+b"
 
 # Other
-export QT_QPA_PLATFORMTHEME="qt5ct"
+export QT_QPA_PLATFORMTHEME="qt6ct"
 export QT_PLUGIN_PATH=/usr/lib/qt/plugins
 export GTK_IM_MODULE="fcitx"
 export QT_IM_MODULE="fcitx"
