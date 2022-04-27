@@ -14,8 +14,8 @@
 
   frame_width = 0
   separator_height = 0
-  frame_color = "#222222"
-  separator_color = "#222222"
+  frame_color = "#282828"
+  separator_color = "#282828"
 
   sort = no
   font = monospace 11
@@ -42,16 +42,16 @@
   mouse_right_click = close_all
 
 [urgency_low]
-  background = "#222222"
-  foreground = "#bbbbbb"
+  background = "#282828"
+  foreground = "#a89984"
   timeout = 7
 
 [urgency_normal]
   background = "#282828"
-  foreground = "#eeeeee"
+  foreground = "#ebdbb2"
   timeout = 10
 
 [urgency_critical]
-  background = "#005577"
-  foreground = "#eeeeee"
+  background = "#d65d0e"
+  foreground = "#ebdbb2"
   timeout = 20

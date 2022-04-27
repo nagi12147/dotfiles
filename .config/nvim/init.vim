@@ -38,10 +38,9 @@ call plug#end()
     set termguicolors
     set background=dark
     colorscheme gruvbox
-    hi Normal                  guifg=NONE    guibg=#222222
-
-    if &diff                      " change colorscheme when using vimdiff
-        colorscheme gruvbox
+    "hi Normal guifg=NONE guibg=#222222
+    if &diff
+        colorscheme gruvbox "change colorscheme when using vimdiff
     endif
 
 " custom symbols for airline

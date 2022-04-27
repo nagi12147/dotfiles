@@ -45,7 +45,7 @@ export LESSOPEN="| /usr/bin/highlight -O ansi %s 2>/dev/null"
 export MANPAGER="less -R --use-color -Dd+r -Du+b"
 
 # Other
-export QT_QPA_PLATFORMTHEME="qt6ct"
+export QT_QPA_PLATFORMTHEME="qt5ct"
 export QT_PLUGIN_PATH=/usr/lib/qt/plugins
 export GTK_IM_MODULE="fcitx"
 export QT_IM_MODULE="fcitx"

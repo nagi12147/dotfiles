@@ -6,8 +6,10 @@ Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
 Xft.rgba: rgb
 
-*background: #222222
-*foreground: #eeeeee
+!*background: #222222
+!*foreground: #eeeeee
+*background: #282828
+*foreground: #ebdbb2
 *cursorColor: #add8e6
 
 ! Gruvbox

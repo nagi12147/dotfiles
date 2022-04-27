@@ -6,35 +6,15 @@
 #	If given a directory, choose random file in it.
 
 if ifinstalled; then
-	ifinstalled hsetroot xwallpaper || exit
+	ifinstalled xwallpaper || exit
 fi
 
-# Location of link to wallpaper link.
-readonly linkpath="$HOME/pics/bg"
+wall_dir="$HOME/pics/bg"
 
-setwallpaper() {
-	hsetroot -solid '#222222'
-	xwallpaper --zoom "$*"
-}
-
-die() {
-	echo "Error: Couldn't set wallpaper." >&2
-	notify-send -u critical "Error" "Couldn't set wallpaper."
-	exit 1
-}
-
-if [ -d "$1" ]; then
-	readonly givenpath="$(find "$1" -type f -iregex '.*.\(jpg\|jpeg\|png\|gif\)' | shuf -n 1)"
+if [ -z "$1" ]; then
+  wall="$(find "$wall_dir" -type f -name "*.jpg" -o -name "*.png" | shuf -n1)"
 else
-	readonly givenpath="$1"
+  wall="$1"
 fi
 
-if [ -f "$givenpath" ]; then
-	if setwallpaper "$givenpath" && ln -srf "$givenpath" "$linkpath"; then
-		notify-send -i "$linkpath" "Wallpaper changed."
-	else
-		die
-	fi
-else
-	setwallpaper "$linkpath" || die
-fi
+xwallpaper --zoom $wall
