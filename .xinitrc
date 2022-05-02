@@ -7,13 +7,13 @@ hsetroot -solid "#282828"
 xrdb $HOME/.Xresources & xrdbpid=$!
 #setbg &
 
-dunst &
 dwmblocks &
-pipewire &
-xmousepasteblock &
-unclutter -idle 3 &
-fcitx &
 xcompmgr &
+pipewire &
+dunst &
+fcitx &
+unclutter -idle 3 &
+xmousepasteblock &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 # dbus
